@@ -16,6 +16,7 @@ pipeline {
         stage('Create Container') {
             steps {
                 script {
+                    sh 'docker images'
                     container = docker.build("kislay4/${env.JOB_BASE_NAME}")
                 }
             }
