@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'githubcred', url: 'https://github.com/kislay4/SampleWebApp.git'
+                checkout scm
             }
         }
         stage('build code') {
