@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+    registryCredential = 'docker-login'
+    }
     agent any
     stages {
         stage('Checkout Code') {
