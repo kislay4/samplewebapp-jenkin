@@ -30,13 +30,6 @@ pipeline {
             }
             }    
         }
-      stage('Checking WebApp Deployment using Curl') {
-            steps {
-                script {
-                    sh 'curl http://localhost:8888/SampleWebApp-0.0.1/'
-                }
-            }
-        }
       
     }
 }
