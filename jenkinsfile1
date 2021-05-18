@@ -1,21 +1,53 @@
 pipeline {
+//Setting up the environment for Azure Auth.
     environment {
     registryCredential = 'docker-login'
+    AZURE_SUBSCRIPTION_ID= credentials('subscriptionid')
+    AZURE_TENANT_ID= credentials('tenantid')
+    AZURE_STORAGE_ACCOUNT= credentials('myStorageAccount')
     }
     agent any
     stages {
+	// This stage will checkout the code from github repository.
         stage('Checkout Code') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'githubcred', url: 'https://github.com/kislay4/samplewebapp-jenkin.git']]])
             }
         }
+	// This stage will build the application using maven build tool.
         stage('build code') {
             steps {
                 script {
                     sh returnStatus: true, script: 'mvn clean package'
+                    
                 }
             }
+            post {
+        success {
+          withCredentials([usernamePassword(credentialsId: 'azuresp', 
+                          passwordVariable: 'AZURE_CLIENT_SECRET', 
+                          usernameVariable: 'AZURE_CLIENT_ID')]) {
+            sh '''
+            
+              ls
+              # Login to Azure with ServicePrincipal
+              az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
+			  
+              # Set default subscription
+              az account set --subscription $AZURE_SUBSCRIPTION_ID
+			  
+              # Execute upload to Azure
+              az storage container create --account-name $AZURE_STORAGE_ACCOUNT --name $JOB_NAME --auth-mode login
+              az storage blob upload-batch --destination ${JOB_NAME} --source target --auth-mode login
+			  
+              # Logout from Azure
+              az logout
+            '''
+          }
         }
+      }
+        }
+	// This stage builds Docker images from a Dockerfile
         stage('Building Dockerfile') {
             steps {
                 script {
@@ -23,7 +55,7 @@ pipeline {
                 }
             }
         }
-     
+    // This stage will push the new created image to docker hub repository. 
       stage('Publish Image to Dockerhub') {
           steps {
               script {
