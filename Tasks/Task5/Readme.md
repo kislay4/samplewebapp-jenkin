@@ -8,6 +8,10 @@
 ### For 2nd Usecase use this Jenkinsfile [click here](https://github.com/kislay4/samplewebapp-jenkin/blob/main/Jenkinsfile)
 
  ![image](https://user-images.githubusercontent.com/24701958/118645821-08f7d280-b7fd-11eb-8697-0c9d153e0177.png)
+ 
+ ## Required credentials are stored in manage credentials section of jenkins.
+____________________________
+![image](https://user-images.githubusercontent.com/24701958/118657148-d6ec6d80-b808-11eb-9fbc-3ae83fc73c40.png)
 
 
 ## Usecase 1 console output:
