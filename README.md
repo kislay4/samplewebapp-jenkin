@@ -4,17 +4,17 @@ This repository contains sample web application.
 
 - For Different Task's Info use below link:
 
-- Task1 [here](Tasks/Task1)
-- Task2 [here](Tasks/Task2)
-- Task3 [here](Tasks/Task3)
-- Task4 [here](Tasks/Task4)
-- Task5 [here](Tasks/Task5)
-- Task6 [here](Tasks/Task6)
-- Task7 [here](Tasks/Task7)
-- Task8 [here](Tasks/Task8)
-- Task9 [here](Tasks/Task9)
-- Task10 [here](Tasks/Task10)
-- Task11 [here](Tasks/Task11)
+- Task1 [click here](Tasks/Task1)
+- Task2 [click here](Tasks/Task2)
+- Task3 [click here](Tasks/Task3)
+- Task4 [click here](Tasks/Task4)
+- Task5 [click here](Tasks/Task5)
+- Task6 [click here](Tasks/Task6)
+- Task7 [click here](Tasks/Task7)
+- Task8 [click here](Tasks/Task8)
+- Task9 [click here](Tasks/Task9)
+- Task10 [click here](Tasks/Task10)
+- Task11 [click here](Tasks/Task11)
 
 
 
