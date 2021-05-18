@@ -1,1 +1,29 @@
 Write a script in PowerShell or Bash that checks your pod is running in your MiniKube environment and prints out the Pod Name and Namespace.
+
+
+#!/bin/bash
+#User has to give the pod name as input
+echo "Enter name of pods you want to check"
+
+#Pod name to be stores in variable "name"
+read name
+
+#command to the status of pods
+kubectl  describe pods $name  | grep ^Status: | head -1 | awk '{print $1}{print $2}' | tr -d '\n'
+echo "  :--bashing into minikube is done "
+
+#storing pods status in "status" variable
+status=`kubectl  describe pods $name  | grep ^Status: | head -1 | awk '{print $2}' | tr -d '\n'`
+
+#storing name of pods in "Name" variable
+Name=`kubectl  describe pods $name  | grep ^Name: | head -1 | awk '{print $2}' | tr -d '\n'`
+
+#storing namespace in which pod is running in "Namespace" variable
+Namespace=`kubectl  describe pods $name  | grep ^Namespace: | head -1 | awk '{print $2}' | tr -d '\n'`
+
+if [ $status == "Running" ]
+then
+    printf "Name:$Name \nNamespace:$Namespace\n"
+else
+    echo "waiting for pods to be ready\n"
+fi
