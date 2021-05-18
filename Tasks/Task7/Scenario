@@ -1,0 +1,4 @@
+Write an ARM template to deploy (Use your own Azure account):
+An Azure StorageAccount with a blob container (include any requires resources)
+Configure this storage account to host a static webpage.
+Deploy the ARM template via the CLI (Show the commands).

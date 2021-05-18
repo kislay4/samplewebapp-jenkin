@@ -1,0 +1,3 @@
+Create a Jenkinsfile in your GitHub repo (use your own account) with two Jenkinsfiles.
+1. Pipeline Jenkinsfile - Builds your Dockerfile and publishes it to your DockerHub account
+2. DSL Jenkinsfile - This task needs to start your Docker container created in the Pipeline and send one command to interact with the container (provide Evidence that it runs and is serving the webpage built).

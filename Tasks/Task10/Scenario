@@ -1,0 +1,1 @@
+Write a script in PowerShell or Bash that checks your pod is running in your MiniKube environment and prints out the Pod Name and Namespace.

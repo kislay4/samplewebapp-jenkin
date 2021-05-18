@@ -1,0 +1,1 @@
+In Jenkins add a step to the pipeline Jenkinsfile created to publish the webpage to the Azure storage account
