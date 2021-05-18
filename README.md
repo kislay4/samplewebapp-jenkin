@@ -2,6 +2,22 @@ Sample Web App
 ====================
 This repository contains sample web application. 
 
+- For Different Task's Info use below link:
+
+- Task1 [here](Tasks/Task1)
+- Task2 [here](Tasks/Task2)
+- Task3 [here](Tasks/Task3)
+- Task4 [here](Tasks/Task4)
+- Task5 [here](Tasks/Task5)
+- Task6 [here](Tasks/Task6)
+- Task7 [here](Tasks/Task7)
+- Task8 [here](Tasks/Task8)
+- Task9 [here](Tasks/Task9)
+- Task10 [here](Tasks/Task10)
+- Task11 [here](Tasks/Task11)
+
+
+
 ### Packaging Type
 After Build step it will generate SampleWebApp-0.0.1-SNAPSHOT.war inside target folder
 
