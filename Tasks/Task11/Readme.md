@@ -1,8 +1,8 @@
-Sample Web App
-====================
-This repository contains sample web application. 
+ # Sample Web App
+_____________________________
+- This repository contains sample web application. 
 
-- For Different Task's Info use below link:
+ ### For Different Task's Info use below link:
 
 - Task1 [click here](Tasks/Task1)
 - Task2 [click here](Tasks/Task2)
