@@ -1,0 +1,149 @@
+{
+    
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+        //Defined which type of value parameter will accept from storageAccount.parameters.json(string/boolean)
+        "parameters": {
+        "storageAccounts_name": {
+            "type": "String"
+        },
+        "location": {
+            "type": "String"
+        },
+        "accountType": {
+            "type": "string"
+        },
+        "tierType": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "networkAclsBypass": {
+            "type": "string"
+        },
+        "networkAclsDefaultAction": {
+            "type": "string"
+        },
+        "supportsHttpsTrafficOnly": {
+            "type": "bool"
+        },
+        
+        "keyType": {
+            "type": "string"
+        },
+        "enabledValue": {
+            "type": "bool"
+        },
+        "accessTier": {
+            "type": "string"
+        },
+         "isBlobSoftDeleteEnabled": {
+            "type": "bool"
+        },
+        
+        "isdenyEncryptionScopeOverrideEnabled": {
+            "type": "bool"
+        },
+        "publicAccess": {
+            "type": "string"
+        },
+        "containerName1": {
+            "type": "string"
+        },
+        "containerName2": {
+            "type": "string"
+        }
+
+    },
+    "variables": {},
+    "resources": [
+        {
+            // storage account creation in Azure Storage
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-02-01",
+            "name": "[parameters('storageAccounts_name')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('accountType')]",
+                "tier": "[parameters('tierType')]"
+            },
+            "kind": "[parameters('kind')]",
+            "properties": {
+                "networkAcls": {
+                    "bypass": "[parameters('networkAclsBypass')]",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "[parameters('networkAclsDefaultAction')]"
+                },
+                "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]",
+                "encryption": {
+                    "services": {
+                       
+                        "blob": {
+                            "keyType":"[parameters('keyType')]",
+                            "enabled": "[parameters('enabledValue')]"
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "[parameters('accessTier')]"
+            }
+        },
+        {
+            //Blobservice creation in Storage Account of Azure
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2021-02-01",
+            "name": "[concat(parameters('storageAccounts_name'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_name'))]"
+            ],
+            "sku": {
+                "name": "[parameters('accountType')]",
+                "tier": "[parameters('tierType')]"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": "[parameters('isBlobSoftDeleteEnabled')]"
+                }
+            }
+        },
+        {
+            //container creates inside blobservice of storage account.
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-02-01",
+            "name": "[concat(parameters('storageAccounts_name'), '/default/$web')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_name'))]"
+            ],
+            "properties": {
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": "[parameters('isdenyEncryptionScopeOverrideEnabled')]",
+               
+                "publicAccess": "[parameters('publicAccess')]"
+            }
+        },
+        
+        
+        {
+            //container creates inside blobservice of storage account.
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-02-01",
+            "name": "[concat(parameters('storageAccounts_name'), '/default/dummy')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_name'))]"
+            ],
+            "properties": {
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": "[parameters('isdenyEncryptionScopeOverrideEnabled')]",
+                "publicAccess": "[parameters('publicAccess')]"
+            }
+        
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+
+    //Defining required parameters for storageAccount.json
+
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "storageAccounts_name": {
+            "value": "createdbyarm2"
+        },
+        "accountType": {
+            "value": "Standard_LRS"
+        },
+        "tierType": {
+            "value": "Standard"
+        },
+        "kind": {
+            "value": "StorageV2"
+        },
+        "networkAclsBypass": {
+            "value": "AzureServices"
+        },
+        "networkAclsDefaultAction": {
+            "value": "Allow"
+        },
+        "supportsHttpsTrafficOnly": {
+            "value": true
+        },
+        "keyType": {
+            "value": "Account"
+        },
+        "enabledValue": {
+            "value": true
+        },
+        "accessTier": {
+            "value": "Hot"
+        },
+        "isBlobSoftDeleteEnabled": {
+            "value": false
+        },
+        "isdenyEncryptionScopeOverrideEnabled": {
+            "value": false
+        },
+        
+        "publicAccess": {
+            "value": "None"
+        },
+        "containerName1": {
+            "value": "$web"
+        },
+        "containerName2": {
+            "value": "dummy"
+        }
+
+    }
+    }
