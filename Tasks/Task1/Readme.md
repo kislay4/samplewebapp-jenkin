@@ -1,5 +1,5 @@
 # Application Installation
-This folder contains scenrio and its installation process.
+This folder contains scenario and its installation process.
 
 ## Prerequisites
 - A system running Ubuntu 18.04 Bionic Beaver or Ubuntu 20.04
@@ -25,12 +25,9 @@ With VirtualBox set up, move on to installing Minikube on your Ubuntu system.
 - `sudo dpkg -i minikube_latest_amd64.deb`
 - Finally, verify you have successfully installed Minikube by checking the version of the software:
 - `minikube version`
-
 - The output should display the version number of the software as below:
 
-- `azureuser@devopstest:~$ minikube version
-minikube version: v1.19.0
-commit: 15cede53bdc5fe242228853e737333b09d4336b5`
+    ![image](https://user-images.githubusercontent.com/24701958/118625801-f32be280-b7e7-11eb-89fd-17c919270d75.png)
 
 ## Kubectl Installation on Ubuntu 18.02
 ### Steps To Install
@@ -46,11 +43,9 @@ commit: 15cede53bdc5fe242228853e737333b09d4336b5`
 - `sudo mv ./kubectl /usr/local/bin/kubectl`
 
 - Verify the installation by checking the version of your kubectl instance:
+  
+  ![image](https://user-images.githubusercontent.com/24701958/118626492-8c5af900-b7e8-11eb-8526-bf60a8ad76f5.png)
 
-- `azureuser@devopstest:~$ kubectl version --short
-Client Version: v1.21.0
-Server Version: v1.20.2
-`
 ## Helm 3 Installation on Ubuntu 18.02
 ### Prerequisites
 - A running Kubernetes cluster.
@@ -68,8 +63,8 @@ Server Version: v1.20.2
 
 - Validate helm installtion by executing the helm command.
 
-- `azureuser@devopstest:~$ helm version
-version.BuildInfo{Version:"v3.5.4", GitCommit:"1b5edb69df3d3a08df77c9902dc17af864ff05d1", GitTreeState:"clean", GoVersion:"go1.15.11"}`
+  ![image](https://user-images.githubusercontent.com/24701958/118626800-cf1cd100-b7e8-11eb-8de9-bbc98b4b0695.png)
+
 
 
 ## Docker Installation on Ubuntu 18.02
@@ -98,6 +93,5 @@ version.BuildInfo{Version:"v3.5.4", GitCommit:"1b5edb69df3d3a08df77c9902dc17af86
 - `sudo apt install docker-ce`
 
 - The output should display the version number of the software as below:
-
-- `azureuser@devopstest:~$ docker -v
-Docker version 20.10.6, build 370c289`
+  
+  ![image](https://user-images.githubusercontent.com/24701958/118626934-e9ef4580-b7e8-11eb-9052-c98dc7f07159.png)
